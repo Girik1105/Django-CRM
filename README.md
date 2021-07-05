@@ -38,9 +38,9 @@ python manage.py runserver
 
 - Check different categories of leads for full management of the crm 
 
-<img src="assets/categories.jpg" width="600px">
+<img src="assets/categories.png" width="600px">
 
-<img src="assets/categories_inside.jpg" width="600px">
+<img src="assets/categories_inside.png" width="600px">
 
 # The Django-Apps
 <table>
