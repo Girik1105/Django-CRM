@@ -27,6 +27,8 @@ python manage.py runserver
 # Features:
 <img src="assets/agents.png" width="600px">
 
+<img src="assets/agents_detail.png" width="600px">
+
 - You can create leads
 - assign/un-assign them to agents 
 - create different categories for leads
