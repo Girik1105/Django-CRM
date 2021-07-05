@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container justify-content-center">
+  <h1 class="border-bottom">Leads{% if user.is_organiser %}<a class="float-right text-muted atagimprove" href="{% url "leads:lead-create" %}">Create a new lead</a>{% endif %}</h1>
+      <a style="font-size:15px;" class="text-muted" href="{% url "leads:category-list" %}">View Categories</a>
+  <div class="row row-cols-1 row-cols-md-2">
+    {% for lead in leads %}
+      <div class="card mb-3 m-2" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="{{ lead.profile_picture.url }}" class="roundimgforleads m-4" height="100" width="100" alt="...">
+            </div>
+                <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Lead <span class="float-right">Lead Since: {{ lead.date_added|date:"d M Y" }}</span></small></p>
+              <h5 class="card-title">{{ lead }}</h5>
+              <p class="card-text">{{ lead.description }}</p>
+              <p class="card-text"><strong>Handled By:</strong>  {{ lead.agent }}</p>
+              <a class="float-right btn btn-outline-dark mb-4 mr-2" href="{% url "leads:lead-detail" pk=lead.pk %}">View Lead</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+   </div>
+
+{% if request.user.is_organiser %}
+   <h4 class="text-muted mt-5">Unassingned Leads</h4>
+   {% if unassingned_leads.exists %}
+   <div class="row row-cols-1 row-cols-md-2">
+     {% for lead in unassingned_leads %}
+       <div class="card mb-3 m-2" style="max-width: 540px;">
+           <div class="row no-gutters">
+             <div class="col-md-4">
+               <img src="{{ lead.profile_picture.url }}" class="roundimgforleads m-4" height="100" width="100" alt="...">
+             </div>
+             <div class="card-body">
+               <p class="card-text"><small class="text-muted">Lead</small></p>
+               <h5 class="card-title">{{ lead }}</h5>
+               <p class="card-text"><strong>Agent: {% if lead.agent %}{{ lead.agent }}{% else %}Not Assigned{% endif %}</strong></p>
+               <a class="float-right btn btn-outline-dark" href="{% url "leads:lead-detail" pk=lead.pk %}">View Lead</a>
+             </div>
+           </div>
+       </div>
+     {% endfor %}
+    </div>
+  {% else %}
+  <p>All leads are currently assigned</p>
+  {% endif %}
+{% endif %}
+
+</div>
+{% endblock %}

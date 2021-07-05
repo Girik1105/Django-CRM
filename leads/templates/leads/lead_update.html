@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+<div class="container bg-light p-4">
+  <h1>Update the Lead</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-outline-dark" value="Update Lead Details">
+      <a  class="btn btn-outline-dark" href="{% url "leads:lead-detail" pk=object.pk %}">Cancel</a>
+  </form>
+
+</div>
+{% endblock %}

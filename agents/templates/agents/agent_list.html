@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container justify-content-center">
+
+  <h1 class="border-bottom p-2 mb-4">Agents<a class="float-right text-muted atagimprove" href="{% url "agents:agent-create" %}">Create a new agent</a></h1>
+
+  <div class="row row-cols-1 row-cols-md-2">
+  {% if object_list.exists %}
+  {% for agent in object_list %}
+    <div class="card mb-3 m-2" style="max-width: 540px;">
+        <div class="row no-gutters">
+              <div class="col-md-4">
+            <img src="{{ agent.user.profile_picture.url }}" class="roundimgforleads m-4" height="100" width="100" alt="...">
+          </div>
+          <div class="card-body">
+            <p class="card-text"><small class="text-muted">Agent</small></p>
+            <h5 class="card-title">{{ agent.user.first_name }} {{ agent.user.last_name }}</h5>
+            <p class="card-text"><strong>Leads assigned: {{ agent.leads.count }}</strong></p>
+
+            <a class="float-right btn btn-outline-dark" href="{% url "agents:agent-detail" pk=agent.pk %}">View agent</a>
+
+          </div>
+        </div>
+    </div>
+  {% endfor %}
+  {% else %}
+  <h1>You don't have any agents.</h1>
+  {% endif %}
+   </div>
+</div>
+{% endblock %}

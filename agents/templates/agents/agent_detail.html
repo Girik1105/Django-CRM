@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row justify-content-center mt-3">
+     <div class="col-md-8 col-sm-12">
+    <h1 class="border-bottom m-2 p-2">Agent Details<a class="float-right text-muted atagimprove" href="{% url "agents:agent-list" %}">Back to Agents</a></h1>
+  </div>
+   <div class="col-md-8 col-sm-12 bg-light p-2 m-3 mb-4">
+      <img src="{{ agent.user.profile_picture.url }}" class="float-right m-0" height="100%" width="40%" alt="...">
+
+      <div class="pl-3">
+      <h2 class="mb-4"><small style="font-size:15px;" class="text-muted">Agent <span class="text-muted float-right m-2">Since: {{ agent.user.date_joined|date:"d M Y" }}</span></small><br>{{ agent.user.first_name }} {{ agent.user.last_name }}</h2>
+
+        <p> <strong>First Name:</strong> {{ agent.user.first_name }} <strong>Last Name:</strong> {{ agent.user.last_name }} <br>
+          <strong>Agent E-mail:</strong> {{ agent.user.email }}<br>
+          <strong>Contact Number:</strong> {{ agent.user.phone_number }}<br>
+          <strong>Address:</strong> {{ agent.user.address}} <br>
+          <strong>Assigned Leads:</strong> {{ agent.leads.all.count }} <br>
+        </p>
+      </div>
+
+      <div class="float-left m-2">
+        <a  class="float-right btn btn-outline-dark" href="{% url "agents:agent-delete" pk=agent.pk %}">Remove Agent</a>
+      </div>
+
+  </div>
+
+  <div class="col-md-8 col-sm-12 bg-light m-3">
+    <h1 class="mb-2">Leads assigned to this Agent</h1>
+    {% if agent.leads.exists %}
+    <div class="row row-cols-3 row-cols-md-3">
+      {% for lead in agent.leads.all %}
+      <div class="col mb-4">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ lead.profile_picture.url }}" class=" m-4" height="100%" width="80%" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ lead }}</h5>
+            <p class="card-text">{{ lead.description }}</p>
+            <a href="{% url "leads:lead-detail" pk=lead.pk %}" class="btn btn-primary">View Lead</a>
+          </div>
+        </div>
+    </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <h1>No leads yet</h1>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

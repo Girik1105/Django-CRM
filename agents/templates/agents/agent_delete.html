@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+<div class="container bg-light p-4">
+  <h1>Are you sure you want to delete the Agent?</h1>
+  <p style="font-size:20px;"><strong>Please Note: The agent will be removed from your organisation.</strong> </p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-outline-dark" value="Remove Agent">
+      <a class="btn btn-outline-dark" href="{% url "agents:agent-detail" pk=object.pk %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

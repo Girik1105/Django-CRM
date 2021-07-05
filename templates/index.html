@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="text-gray-700 body-font">
+    <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+      
+      <div class="text-center lg:w-2/3 w-full">
+        <h1 class="title-font mt-5 font-medium text-gray-900">
+            CRM built with Django
+        </h1>
+        <p class="mb-8 leading-relaxed">
+            This CRM helps you manage your leads.
+        </p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="lcontainer rounded mt-3" width="86" height="86" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+            <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+          </svg>
+          <br><br>
+          <a  href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary">Login to your system</button></a>
+        <a href="{% url 'register' %}"><button type="button" class="btn btn-outline-success">New Here? Register your Company Now!</button></a>
+        <div class="flex justify-center">
+          <a href="{% url 'login' %}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+            Login to get started
+          </a>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock content %}

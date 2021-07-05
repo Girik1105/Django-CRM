@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+<div class="container bg-light p-4">
+  <h1>Are you sure you want to delete this Catgory?</h1>
+  <p style="font-size:20px;"><strong>Please Note:All the leads in this category will have no category</strong> </p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-outline-dark" value="Delete Category">
+      <a class="btn btn-outline-dark" href="{% url "leads:category-detail" pk=object.pk %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

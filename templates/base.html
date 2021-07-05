@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    {% include "head.html" %}
+  <body>
+    {% include "header.html" %}
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-lg-1 col-md-4 col-xs-12 col-sm-12">
+          {% block leftpanel %}{% endblock %}
+        </div>
+        <div class="col-12 col-lg-10 col-md-8 col-xs-12 col-sm-12">
+          {% block content %}{% endblock %}
+        </div>
+        <div class="col-12 col-lg-1 col-md-12 col-xs-12 col-sm-12">
+          {% block rightpanel %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    {% include "scripts.html" %}
+  </body>
+</html>
